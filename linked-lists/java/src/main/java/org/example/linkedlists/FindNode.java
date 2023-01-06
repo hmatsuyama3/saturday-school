@@ -12,6 +12,22 @@ public class FindNode {
      * @return The node at nth away from the end.
      */
     public static LinkedListNode<Integer> findNthFromEnd(int nth, LinkedListNode<Integer> head) {
-        return head;
+        int size = 0;
+        LinkedListNode<Integer> counter = head; //have to send in a node object to iterate through linked list
+        while(counter != null){ //use it to find out how long the linked list is
+            size++;
+            counter=counter.getNext();
+        }
+
+        int location = size-nth-1; //the nth from the end is length-nth-1 to account for zero index
+        if(location<0){             //handle edge case - if nth is larger than linked list size, return null
+            return null;
+        }else{
+            for(int i=0; i<location; i++){ //iterate through linked list & return head at the correct element
+                head = head.getNext();
+            }
+            return head;
+        }
+
     }
 }
